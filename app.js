@@ -30,14 +30,17 @@ app.use('/users', users);
 app.use('/error', error);
 
 // handle fallback for HTML5 history API
-//app.use(require('connect-history-api-fallback')())
+/*app.use(require('connect-history-api-fallback')({
+    index:path.join(__dirname,'./views/index.html')
+}))*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   //var err = new Error('Not Found');
   //err.status = 404;
   // next(err);
-    res.redirect(302,'/error/notfund')
+    res.render('index');
+    //res.redirect(302,'/error/notfund')
 });
 
 // error handler
