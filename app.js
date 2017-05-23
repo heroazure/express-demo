@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var error = require('./routes/error');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -28,6 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/error', error);
+api.forEach(function (item) {
+    app.use('/api', item);
+})
 
 // handle fallback for HTML5 history API
 /*app.use(require('connect-history-api-fallback')({
@@ -42,7 +46,6 @@ app.use(function(req, res, next) {
     res.render('index');
     //res.redirect(302,'/error/notfund')
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
