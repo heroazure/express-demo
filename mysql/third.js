@@ -2,30 +2,22 @@
  * Created by xuwei on 2017/5/23.
  */
 
-var mysql  = require('mysql');
-
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '123456',
-    port: '3306',
-    database: 'hero',
-});
+let connection=require('./connection')
 
 connection.connect();
 
-var  addSql = 'INSERT INTO websites(Id,name,url,alexa,country) VALUES(0,?,?,?,?)';
-var  addSqlParams = ['菜鸟工具', 'https://c.runoob.com','23453', 'CN'];
+let  addSql = 'INSERT INTO websites(Id,name,url,alexa,country) VALUES(0,?,?,?,?)';
+let  addSqlParams = ['菜鸟工具', 'https://c.runoob.com','23453', 'CN'];
 //增
-connection.query(addSql,addSqlParams,function (err, result) {
+connection.query(addSql,addSqlParams,(err, result)=>  {
     if(err){
         console.log('[INSERT ERROR] - ',err.message);
         return;
     }
 
     console.log('--------------------------INSERT----------------------------');
-    //console.log('INSERT ID:',result.insertId);
-    console.log('INSERT ID:',result);
+    console.log('INSERT ID:',result.insertId);
+    //console.log('INSERT ID:',result);
     console.log('-----------------------------------------------------------------\n\n');
 });
 

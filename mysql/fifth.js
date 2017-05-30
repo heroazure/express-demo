@@ -2,19 +2,11 @@
  * Created by xuwei on 2017/5/23.
  */
 
-var mysql  = require('mysql');
-
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '123456',
-    port: '3306',
-    database: 'hero',
-});
+let connection=require('./connection')
 
 connection.connect();
 
-var delSql = 'DELETE FROM websites where id=6';
+let delSql = 'DELETE FROM websites where id=6';
 //删
 connection.query(delSql,function (err, result) {
     if(err){
