@@ -1,15 +1,16 @@
 /**
- * Created by xuwei on 2017/5/30.
+ * Created by xuwei on 2017/6/2.
  */
-var MongoClient = require('mongodb').MongoClient
+
+var MongoClient = require('mongodb').MongoClient;
 var DB_CONN_STR = require('./connectString')
 
-var insertData = function(db, callback) {
-    //连接到表 site
+var selectData = function(db, callback) {
+    //连接到表
     var collection = db.collection('site');
-    //插入数据
-    var data = [{"name":"菜鸟教程","url":"www.runoob.com"},{"name":"菜鸟工具","url":"c.runoob.com"}];
-    collection.insert(data, function(err, result) {
+    //查询数据
+    var whereStr = {"name":'菜鸟教程'};
+    collection.find(whereStr).toArray(function(err, result) {
         if(err)
         {
             console.log('Error:'+ err);
@@ -21,7 +22,7 @@ var insertData = function(db, callback) {
 
 MongoClient.connect(DB_CONN_STR, function(err, db) {
     console.log("连接成功！");
-    insertData(db, function(result) {
+    selectData(db, function(result) {
         console.log(result);
         db.close();
     });
