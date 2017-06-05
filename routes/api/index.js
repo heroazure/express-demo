@@ -4,13 +4,13 @@
 var express = require('express');
 var index = express.Router();
 var user = require('./user')
+var user2 = require('./user2')
 
 /* GET users listing. */
 index.get('/', function (req, res, next) {
     res.render('user');
-    res.sendFile('')
 });
 
 module.exports= [
-    index,user
+    index,user,user2
 ]
