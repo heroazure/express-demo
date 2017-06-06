@@ -1,10 +1,11 @@
 /**
  * Created by xuwei on 2017/5/15.
  */
-var express = require('express');
-var index = express.Router();
-var user = require('./user')
-var user2 = require('./user2')
+let express = require('express');
+let index = express.Router();
+let user = require('./user')
+let school = require('./school')
+let book = require('./book')
 
 /* GET users listing. */
 index.get('/', function (req, res, next) {
@@ -12,5 +13,5 @@ index.get('/', function (req, res, next) {
 });
 
 module.exports= [
-    index,user,user2
+    index,user,school,book
 ]

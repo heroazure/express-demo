@@ -1,12 +1,11 @@
 /**
  * Created by xuwei on 2017/6/5.
  */
-var mongoose = require('mongoose');
-
-var BookSchema = new mongoose.Schema({
-    uid: Number,
+let mongoose = require('mongoose');
+let BookSchema = new mongoose.Schema({
     bookName: String,
-    createTime: Date
+    price:Number,
+    createTime: {type:Date,default:Date.now}
 });
 
 mongoose.model('Book', BookSchema);
