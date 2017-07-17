@@ -5,6 +5,29 @@ let express = require('express');
 let router = express.Router();
 let mongoose=require('mongoose')
 let Book=mongoose.model('Book')
+let url=require('url')
+
+router.get('/book',(req, res, next)=>{
+    let query=url.parse(req.url,true).query
+    let option={}
+    if(query&&query.bookName){
+        option.bookName=new RegExp(query.bookName,'i')
+    }
+    Book.find(option,(err,result)=>{
+        if(err){
+            res.json(
+                {
+                    status:{retCode:-1,msg:'未知异常'}
+                }
+            )
+            return next()
+        }
+        res.json({
+            status:{retCode:0,msg:'成功'},
+            data:result
+        })
+    })
+})
 
 router.post('/book',(req, res, next)=> {
     let body=req.body
@@ -12,18 +35,31 @@ router.post('/book',(req, res, next)=> {
         bookName:body.bookName,
         price:body.price
     })
-    book.save((err)=> {
+    book.save((err,result)=> {
         if(err){
-            res.json({msg:'未知异常'})
+            res.json(
+                {
+                    status:{retCode:-1,msg:'未知异常'}
+                }
+            )
             return next()
         }
-        Book.find({},(err, docs)=> {
+        res.json({
+            status:{retCode:0,msg:'成功'},
+            data:result
+        })
+        /*Book.find({},(err, docs)=> {
             if(err){
-                res.json({msg:'未知异常'})
+                res.json({
+                    status:{retCode:-1,msg:'未知异常'}
+                })
                 return next()
             }
-            res.json(docs)
-        })
+            res.json({
+                status:{retCode:0,msg:'成功'},
+                data:docs
+            })
+        })*/
     })
 })
 

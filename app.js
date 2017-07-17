@@ -11,8 +11,10 @@ var db=mongoose()
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var chat = require('./routes/chat');
 var error = require('./routes/error');
-var api = require('./routes/api');
+var book = require('./routes/api/book');
+// var api = require('./routes/api');
 
 var app = express();
 
@@ -31,10 +33,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/chat', chat);
 app.use('/error', error);
-api.forEach(function (item) {
+app.use('/api', book);
+/*api.forEach(function (item) {
     app.use('/api', item);
-})
+})*/
 
 // handle fallback for HTML5 history API
 /*app.use(require('connect-history-api-fallback')({

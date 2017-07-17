@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>用户页面</title>
+    <title>Title</title>
 </head>
 <body>
 <div id="list1">
@@ -18,7 +18,7 @@
     var btn1=document.querySelector('#btn1')
     var input1=document.querySelector('#input1')
     var list1=document.querySelector('#list1')
-    var socket = io('http://localhost:3330')
+    var socket = io('http://localhost');
     socket.on('news', function (data) {
         list1.innerHTML=data.join('\n')
     });
