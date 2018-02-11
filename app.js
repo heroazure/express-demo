@@ -14,7 +14,8 @@ var users = require('./routes/users');
 var chat = require('./routes/chat');
 var error = require('./routes/error');
 var book = require('./routes/api/book');
-// var api = require('./routes/api');
+var dongnicha = require('./routes/api/dongnicha');
+//var api = require('./routes/api');
 
 var app = express();
 
@@ -35,7 +36,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/chat', chat);
 app.use('/error', error);
-app.use('/api', book);
+//app.use('/api', book);
+app.use('/api', dongnicha);
 /*api.forEach(function (item) {
     app.use('/api', item);
 })*/
@@ -51,7 +53,7 @@ app.use(function(req, res, next) {
   //err.status = 404;
   // next(err);
     res.render('index');
-    //res.redirect(302,'/error/notfund')
+    //res.redirect(302,'/error/notfund'
 });
 // error handler
 app.use(function(err, req, res, next) {
